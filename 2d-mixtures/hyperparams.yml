@@ -1,0 +1,22 @@
+num_updates: 10000
+num_plot: 500
+dim_z: 256
+dim_x: 2
+batchsize: 100
+# z sampler gaussian
+gaussian: True
+#target sampler
+num_mixture: 8
+scale: 2.0
+std: 0.2
+# train
+# discriminator
+num_critic: 5
+clip: 0.01
+dis_optimizer: 'rmsprop'
+dis_activation: 'leaky_relu'
+dis_lr: 0.00005
+# generator:
+gen_optimizer: 'adam'
+gen_activation: 'relu'
+gen_lr: 0.00005

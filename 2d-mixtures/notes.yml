@@ -1,0 +1,8 @@
+add gradient_clipping?
+momentum param?
+
+256
+128
+leaky_relu
+128
+1
