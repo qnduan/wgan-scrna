@@ -1,0 +1,27 @@
+## structure
+dim_z: 256
+dim_x: 2
+## z sampler gaussian
+gaussian: True
+## target sampler
+num_mixture: 8
+scale: 2.0
+std: 0.2
+## train
+num_updates: 10000
+num_plot: 500
+batchsize: 100
+# discriminator
+num_critic: 5
+lda: 1 # lambda
+dis_optimizer: 'adam'
+dis_activation: 'leaky_relu'
+dis_lr: 0.0001
+dis_beta1: 0
+dis_beta2: 0.9
+# generator:
+gen_optimizer: 'adam'
+gen_activation: 'relu'
+gen_lr: 0.0001
+gen_beta1: 0
+gen_beta2: 0.9
