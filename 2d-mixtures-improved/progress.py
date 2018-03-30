@@ -17,8 +17,9 @@ class Progress():
         self.loss_dis.append(np.mean(self.loss_critic))
         self.loss_critic = []
 
-    def plot(self):
+    def plot(self,show=True):
         plt.figure()
         plt.plot(-np.array(self.loss_dis),label='wloss')
         plt.plot(np.array(self.loss_gen),label='gloss')
         plt.legend()
+        plt.show()
