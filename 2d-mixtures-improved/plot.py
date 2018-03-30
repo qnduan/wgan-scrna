@@ -7,8 +7,8 @@ sns.set(font_scale=2)
 sns.set_style("white")
 
 def plot_kde(data, dir=None, filename="kde", color="Greens", show=False):
-	if dir is None:
-		raise Exception()
+	# if dir is None:
+	# 	raise Exception()
 	try:
 		os.mkdir(dir)
 	except:
@@ -28,8 +28,8 @@ def plot_kde(data, dir=None, filename="kde", color="Greens", show=False):
 		pylab.show()
 
 def plot_scatter(data, dir=None, filename="scatter", color="blue", show=False):
-	if dir is None:
-		raise Exception()
+	# if dir is None:
+	# 	raise Exception()
 	try:
 		os.mkdir(dir)
 	except:
