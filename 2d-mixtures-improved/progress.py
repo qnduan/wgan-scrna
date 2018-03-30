@@ -8,10 +8,10 @@ class Progress():
         self.loss_critic = []
 
     def add_loss_critic(self,loss):
-        self.loss_critic.append(loss.data.numpy()[0])
+        self.loss_critic.append(loss)
 
     def add_loss_gen(self,loss):
-        self.loss_gen.append(loss.data.numpy()[0])
+        self.loss_gen.append(loss)
 
     def add_loss_dis(self):
         self.loss_dis.append(np.mean(self.loss_critic))
