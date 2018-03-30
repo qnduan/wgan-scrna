@@ -6,7 +6,7 @@ import seaborn as sns
 sns.set(font_scale=2)
 sns.set_style("white")
 
-def plot_kde(data, dir=None, filename="kde", color="Greens"):
+def plot_kde(data, dir=None, filename="kde", color="Greens", show=False):
 	if dir is None:
 		raise Exception()
 	try:
@@ -22,9 +22,12 @@ def plot_kde(data, dir=None, filename="kde", color="Greens"):
 	kde = ax.get_figure()
 	pylab.xlim(-4, 4)
 	pylab.ylim(-4, 4)
-	kde.savefig("{}/{}.png".format(dir, filename))
+	if dir!=None:
+		kde.savefig("{}/{}.png".format(dir, filename))
+	if show:
+		pylab.show()
 
-def plot_scatter(data, dir=None, filename="scatter", color="blue"):
+def plot_scatter(data, dir=None, filename="scatter", color="blue", show=False):
 	if dir is None:
 		raise Exception()
 	try:
@@ -37,7 +40,10 @@ def plot_scatter(data, dir=None, filename="scatter", color="blue"):
 	pylab.scatter(data[:, 0], data[:, 1], s=20, marker="o", edgecolors="none", color=color)
 	pylab.xlim(-4, 4)
 	pylab.ylim(-4, 4)
-	pylab.savefig("{}/{}.png".format(dir, filename))
+	if dir!= None:
+		pylab.savefig("{}/{}.png".format(dir, filename))
+	if show:
+		pylab.show()
 
 # def main():
 # 	num_samples = 10000
