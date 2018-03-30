@@ -14,7 +14,7 @@ def plot_kde(data, dir=None, filename="kde", color="Greens", show=False):
 	except:
 		pass
 	fig = pylab.gcf()
-	fig.set_size_inches(16.0, 16.0)
+	# fig.set_size_inches(16.0, 16.0)
 	pylab.clf()
 	bg_color  = sns.color_palette(color, n_colors=256)[0]
 	ax = sns.kdeplot(data[:, 0], data[:,1], shade=True, cmap=color, n_levels=30, clip=[[-4, 4]]*2)
@@ -35,7 +35,7 @@ def plot_scatter(data, dir=None, filename="scatter", color="blue", show=False):
 	except:
 		pass
 	fig = pylab.gcf()
-	fig.set_size_inches(16.0, 16.0)
+	# fig.set_size_inches(16.0, 16.0)
 	pylab.clf()
 	pylab.scatter(data[:, 0], data[:, 1], s=20, marker="o", edgecolors="none", color=color)
 	pylab.xlim(-4, 4)
