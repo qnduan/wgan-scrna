@@ -21,7 +21,7 @@ dis_beta1: 0
 dis_beta2: 0.9
 # generator:
 gen_optimizer: 'adam'
-gen_activation: 'relu'
+gen_activation: ['leaky_relu','relu']
 gen_lr: 0.0001
 gen_beta1: 0
 gen_beta2: 0.9

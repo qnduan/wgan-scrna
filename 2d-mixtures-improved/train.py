@@ -27,13 +27,13 @@ for i in range(config['num_updates']):
             batchsize, config['num_mixture'],
             scale=config['scale'],std=config['std'])
         samples_true_numpy = samples_true / config['scale']
-        samples_true = Variable(torch.from_numpy(samples_true_numpy))
+        samples_true = Variable(torch.from_numpy(samples_true_numpy).cuda())
         z = sampler.sample_z(config['dim_z'],batchsize,
             gaussian=config['gaussian'])
-        z = Variable(torch.from_numpy(z))
+        z = Variable(torch.from_numpy(z).cuda())
         samples_fake = gen_net(z).detach()
         samples_fake /= config['scale']
-        samples_fake_numpy = samples_fake.data.numpy()
+        samples_fake_numpy = samples_fake.data.cpu().numpy()
 
         eps = np.random.uniform(size=batchsize).astype('float32')
         eps2 = 1 - eps
@@ -41,11 +41,11 @@ for i in range(config['num_updates']):
         samples_mid_numpy = (samples_true_numpy.T*eps).T + \
             (samples_fake_numpy.T*eps2).T
         samples_mid = Variable(torch.from_numpy(
-            samples_mid_numpy),requires_grad=True)
+            samples_mid_numpy).cuda(),requires_grad=True)
         f_mid = dis_net(samples_mid)
         # [0]:outputs tuple
         # torch.ones(): grad can be implicitly created only for scalar outputs
-        grad_mid = grad(f_mid,samples_mid,torch.ones(f_mid.size()),
+        grad_mid = grad(f_mid,samples_mid,torch.ones(f_mid.size()).cuda(),
             create_graph=True)[0]
         grad_mid_norm = grad_mid.norm(dim=1)
         diff = (grad_mid_norm - 1).pow(2)
@@ -54,7 +54,7 @@ for i in range(config['num_updates']):
         f_fake = dis_net(samples_fake)
         loss_critic = f_fake.mean() - f_true.mean() + \
             (config['lda']*diff).mean()
-        prog.add_loss_critic(loss_critic)
+        prog.add_loss_critic(loss_critic.data.cpu().numpy()[0])
 
         dis_optim.zero_grad()
         loss_critic.backward()
@@ -63,12 +63,12 @@ for i in range(config['num_updates']):
     prog.add_loss_dis()
     z = sampler.sample_z(config['dim_z'],batchsize,
         gaussian=config['gaussian'])
-    z = Variable(torch.from_numpy(z))
+    z = Variable(torch.from_numpy(z).cuda())
     samples_fake = gen_net(z)
     samples_fake /= config['scale']
     f_fake = dis_net(samples_fake)
     loss_gen = -f_fake.mean()
-    prog.add_loss_gen(loss_gen)
+    prog.add_loss_gen(loss_gen.data.cpu().numpy()[0])
 
     gen_optim.zero_grad()
     loss_gen.backward()
@@ -78,8 +78,8 @@ for i in range(config['num_updates']):
         print(i+1)
         z = sampler.sample_z(config['dim_z'],10000,
             gaussian=config['gaussian'])
-        z = Variable(torch.from_numpy(z))
-        samples_fake = gen_net(z).data.numpy()
-        plot.plot_scatter(samples_fake,dir='plot',filename='{}_scatter'.format(i+1))
-        plot.plot_kde(samples_fake,dir='plot',filename='{}_kde'.format(i+1))
+        z = Variable(torch.from_numpy(z).cuda())
+        samples_fake = gen_net(z).data.cpu().numpy()
+        plot.plot_scatter(samples_fake,filename='{}_scatter'.format(i+1),show=True)
+        plot.plot_kde(samples_fake,filename='{}_kde'.format(i+1),show=True)
 prog.plot()

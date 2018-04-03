@@ -1,0 +1,4 @@
+1. change RMSProp done
+2. timeit in progress done
+
+3. standardize input to one by dividing by max_val ?
