@@ -18,4 +18,3 @@ pylab.hist(pylab.ravel(samples_fake_numpy),bins=100)
 #plot.plot_scatter(m1.T,m2.T)
 #
 #cc = sample_x(32)
-
