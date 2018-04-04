@@ -4,18 +4,21 @@ dim_x: 6605
 ## train
 num_updates: 30000
 num_plot: 500
-batchsize: 32
+batchsize: 64
 # discriminator
 num_critic: 5
-lda: 1 # lambda
-dis_optimizer: 'RMSProp'
+lda: 10 # lambda
+dis_optimizer: 'Adam'
 dis_activation: 'leaky_relu'
 dis_lr: 0.0001
-# dis_beta1: 0
-# dis_beta2: 0.9
+#dis_momentum: 0.9
+dis_beta1: 0
+dis_beta2: 0.9
 # generator:
-gen_optimizer: 'RMSProp'
+gen_optimizer: 'Adam'
 gen_activation: 'leaky_relu'
 gen_lr: 0.0001
-# gen_beta1: 0
-# gen_beta2: 0.9
+#gen_weight_decay: 0
+#gen_momentum: 0.9
+gen_beta1: 0
+gen_beta2: 0.9
