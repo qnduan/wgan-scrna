@@ -26,7 +26,7 @@ class Progress():
 
     def plot(self,show=True):
         plt.figure()
-        plt.plot(-np.array(self.loss_dis),label='wloss')
-        plt.plot(np.array(self.loss_gen),label='gloss')
+        plt.plot(-np.array(self.loss_dis),label='wloss',alpha=0.3)
+        plt.plot(np.array(self.loss_gen),label='gloss',alpha=0.3)
         plt.legend()
         plt.show()
