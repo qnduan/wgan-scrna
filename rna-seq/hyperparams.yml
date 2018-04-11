@@ -1,6 +1,6 @@
 ## structure
 dim_z: 100
-dim_x: 6605
+dim_x: 6788
 ## train
 num_updates: 30000
 num_plot: 500
