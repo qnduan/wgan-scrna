@@ -1,3 +1,4 @@
 !data/*.pkl
 .pyc
 rna-seq/__pycache__
+rna-seq/temp_models/*
