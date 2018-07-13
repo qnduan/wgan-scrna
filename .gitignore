@@ -1,5 +1,5 @@
-!data/*.pkl
+!ata/*.pkl
 .pyc
 rna-seq/__pycache__
 rna-seq/temp_models/*
-!rna-seq/temp_models/dis_net_10000.pt
+!rna-seq/temp_models/dis_net_cpu_10000.pt
