@@ -1,14 +1,15 @@
 ## structure
 dim_z: 100
-dim_x: 6788
+dim_x: 6982
+#dim_x: 6788
 # dim_x: 6605
 ## train
 num_updates: 10000
 num_plot: 500
-batchsize: 32
+batchsize: 16
 # discriminator
 num_critic: 5
-lda: 20 # lambda
+lda: 10 # lambda
 dis_optimizer: 'Adam'
 dis_activation: 'leaky_relu'
 dis_lr: 0.0001

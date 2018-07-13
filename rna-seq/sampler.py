@@ -3,7 +3,7 @@ import math
 import numpy as np
 import qn
 
-mat = qn.load('data/ipf_log_tpm.pkl')
+mat = qn.load('data/pollen.pkl')
 max_val = np.max(mat)
 
 def sample_z(batchsize,dim):
